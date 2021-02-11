@@ -67,7 +67,97 @@ function renderRides(ridesArray) {
   }
 }
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', async function() {
   // YOUR CODE
+  // add json fetcher
+let response = await fetch('https://kiei451.com/api/rides.json')
+let json = await response.json()
+let clearHTML = document.querySelector(`.rides`)
+let emptyArray = []
+  
+  // start with all rides
+
+  // we have data! now let's build up some notifications for clicking the rides
+let allFilter = document.querySelector('#all-filter') 
+allFilter.addEventListener('click', function(event) {
+console.log('All rides was clicked!')
+  // boom, solved. Now to load all the rides inside the thing we want
+clearHTML.innerHTML = ``
+renderRides(json)
+  })
+
+  // noober pool array
+let poolArray = []
+for (let i=0; i<json.length; i++) {
+  let p = levelOfService(json[i])
+  if(p == 'Noober Pool') {
+    poolArray.push(json[i])
+  }
+}
+
+  // noober pool load
+let npoolFilter = document.querySelector('#noober-pool-filter') 
+npoolFilter.addEventListener('click', function(event) {
+console.log('Noober pool was clicked!')
+  // boom, solved. Now to load all the rides inside the thing we want
+  clearHTML.innerHTML = ``
+  renderRides(poolArray)
+  })
+
+  // noober purple array
+  let purpleArray = []
+  for (let i=0; i<json.length; i++) {
+    let p = levelOfService(json[i])
+    if(p == 'Noober Purple') {
+      purpleArray.push(json[i])
+    }
+  }
+  
+    // noober Purple load
+  let npurpleFilter = document.querySelector('#noober-purple-filter') 
+  npurpleFilter.addEventListener('click', function(event) {
+  console.log('Noober Purple was clicked!')
+    // boom, solved. Now to load all the rides inside the thing we want
+    clearHTML.innerHTML = ``
+    renderRides(purpleArray)
+    })
+
+    // noober XL array
+  let nXLArray = []
+    for (let i=0; i<json.length; i++) {
+      let p = levelOfService(json[i])
+      if(p == 'Noober XL') {
+        nXLArray.push(json[i])
+      }
+    }
+
+    // noober Purple load
+  let nXLFilter = document.querySelector('#noober-xl-filter') 
+    nXLFilter.addEventListener('click', function(event) {
+    console.log('Noober XL was clicked!')
+      // boom, solved. Now to load all the rides inside the thing we want
+      clearHTML.innerHTML = ``
+      renderRides(nXLArray)
+      })
+
+        // noober XL array
+  let nXArray = []
+  for (let i=0; i<json.length; i++) {
+    let p = levelOfService(json[i])
+    if(p == 'Noober X') {
+      nXArray.push(json[i])
+    }
+  }
+
+  // noober Purple load
+  let nXFilter = document.querySelector('#noober-x-filter') 
+  nXFilter.addEventListener('click', function(event) {
+  console.log('Noober X was clicked!')
+    // boom, solved. Now to load all the rides inside the thing we want
+    clearHTML.innerHTML = ``
+    renderRides(nXArray)
+    })
+
+    //end
 })
 
